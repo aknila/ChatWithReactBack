@@ -1,7 +1,7 @@
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
-const axios = require("axios");
+// // const axios = require("axios");
 
 const port = process.env.PORT || 4001;
 const index = require("./routes/index");
@@ -13,7 +13,7 @@ const server = http.createServer(app);
 
 const io = socketIo(server);
 
-const getApiAndEmit = "TODO"
+// const getApiAndEmit = "TODO"
 
 let socketCount = 0;
 
@@ -24,6 +24,14 @@ io.on("connection", socket => {
     socket.on('chat message', msg => {
         console.log('new message');
         io.emit('chat message', msg);
+    });
+    socket.on('delete message', data => {
+        console.log('message deleted');
+        io.emit('delete message', data)
+    });
+    socket.on('edit message', data => {
+        console.log('message edited');
+        io.emit('edit message', data)
     });
     socket.on("disconnect", () => {
         console.log("Client disconnected");
