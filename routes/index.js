@@ -18,7 +18,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/upload", (req, res) => {
-	console.log('allo');
 	upload(req, res, function (err) {
 		if (err instanceof multer.MulterError) {
 			return res.status(500).json(err)
