@@ -73,7 +73,6 @@ const watcher = (socket) => {
         chan.emit('new off', {count: socketCount[chan.name]});
     });
     socket.on('history', data => {
-        // console.log('history', -data.len);
         socket.emit('history', {save: msgSave[chan.name].slice(-data.len)})
     });
 };
